@@ -5,6 +5,6 @@ export const UserSchema = new mongoose.Schema({
     lastname: String,
     phonenumber: String,
     email: String,
-    dateCreated: Date
+    
 
-})
+}, {timestamps: { createdAt: 'created_at', updatedAt: 'updated_at'}});

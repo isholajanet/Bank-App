@@ -4,5 +4,5 @@ export interface User{
     lastname: string;
     phonenumber: string;
     email: string;
-    dateCreated: Date;
+
 }
