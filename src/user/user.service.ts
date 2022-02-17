@@ -2,10 +2,14 @@ import { Injectable } from "@nestjs/common";
 import { User } from './interfaces/user.interface'
 import { InjectModel } from '@nestjs/mongoose'
 import { Model } from 'mongoose'
+import { CreateAccountDto } from "src/dto/create-account-dto";
+import { Account } from "src/account/interface/account.interface";
+import { AccountService } from "src/account/account.service";
 
 @Injectable()
 export class UserService{
-    constructor(@InjectModel('User') private readonly userModel: Model<User>){
+    constructor(@InjectModel('User') private readonly userModel: Model<User>, @InjectModel('Account') private readonly accountModel: Model<Account>,
+                private readonly accountService: AccountService){
 
     }
   
@@ -33,5 +37,11 @@ export class UserService{
 
     async update(id: string, user: User): Promise<User>{
         return await this.userModel.findByIdAndUpdate(id, user, {new: true})
+    }
+
+    async addAccount(account: Account): Promise<Account>{
+            account.name = this.userModel.name;
+            const newAccount = new this.accountModel(account);
+            return await this.accountService.create(newAccount);
     }
 }
