@@ -8,7 +8,7 @@ import { AccountService } from "src/account/account.service";
 
 @Injectable()
 export class UserService{
-    constructor(@InjectModel('User') private readonly userModel: Model<User>, @InjectModel('Account') private readonly accountModel: Model<Account>,
+    constructor(@InjectModel('User') private readonly userModel: Model<User>,
                 private readonly accountService: AccountService){
 
     }
@@ -23,10 +23,11 @@ export class UserService{
         return await this.userModel.findOne({ _id: id });
     }
 
-    async create(user: User): Promise <User>{
-        
+    async create(user: User, account: Account): Promise <User>{
+        account.name = this.userModel.name;
+        const newAccount = this.accountService.create(account);
+        user.account = await newAccount;
         const newUser = new this.userModel(user);
-
         return await newUser.save();
 
     }
@@ -41,7 +42,6 @@ export class UserService{
 
     async addAccount(account: Account): Promise<Account>{
             account.name = this.userModel.name;
-            const newAccount = new this.accountModel(account);
-            return await this.accountService.create(newAccount);
+            return await this.accountService.create(account);
     }
 }
