@@ -30,6 +30,6 @@ export class UserController {
 
     @Put(':id')
     update(@Param('id') id, @Body() updateUserDto: CreateUserDto){
-        return this.userService.update(id,updateUserDto);
+        return this.userService.update( id, updateUserDto );
     }
 }

@@ -16,6 +16,7 @@ export class AccountService{
     }
 
     async findOne(id: String): Promise<Account>{
+    
         return await this.accountModel.findOne({_id: id})
     }
 
@@ -28,6 +29,6 @@ export class AccountService{
     }
 
     async update(id: String, account: Account): Promise<Account>{
-        return await this.accountModel.findByIdAndUpdate(id)
+        return await this.accountModel.findByIdAndUpdate(id, account)
     }
 }
