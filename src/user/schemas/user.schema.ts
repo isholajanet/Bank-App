@@ -7,7 +7,7 @@ export const UserSchema = new mongoose.Schema({
     lastname: String,
     phonenumber: String,
     email: String,
-    account: { type: mongoose.Schema.Types.ObjectId, ref: 'Account' }
+    account_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Account' }
 
 },
 {timestamps: { createdAt: 'created_at', updatedAt: 'updated_at'}

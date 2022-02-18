@@ -24,7 +24,7 @@ export class UserService{
     }
 
     async create(user: User, account: Account): Promise <User>{
-        account.name = this.userModel.name;
+        account.name = user.firstname +" "+ user.lastname;
         const newAccount = this.accountService.create(account);
         user.account = await newAccount;
         const newUser = new this.userModel(user);
@@ -40,8 +40,4 @@ export class UserService{
         return await this.userModel.findByIdAndUpdate(id, user, {new: true})
     }
 
-    async addAccount(account: Account): Promise<Account>{
-            account.name = this.userModel.name;
-            return await this.accountService.create(account);
-    }
 }
