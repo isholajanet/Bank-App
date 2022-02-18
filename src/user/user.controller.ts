@@ -15,7 +15,7 @@ export class UserController {
         return this.userService.findAll();
     }
     @Get(':id')
-    findOne(@Param('id') id): Promise<User>{
+    findOne(@Param('id') id: string): Promise<User>{
         return this.userService.findOne(id);
     }
 
@@ -25,12 +25,12 @@ export class UserController {
     }
 
     @Delete(':id')
-    delete(@Param('id') id): Promise<void>{
+    delete(@Param('id') id: string): Promise<void>{
        return this.userService.delete(id);
     }
 
     @Put(':id')
-    update(@Param('id') id, @Body() updateUserDto: CreateUserDto){
+    update(@Param('id') id: string, @Body() updateUserDto: CreateUserDto){
         return this.userService.update( id, updateUserDto );
     }
 }
