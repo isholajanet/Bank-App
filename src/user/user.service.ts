@@ -6,6 +6,7 @@ import { CreateAccountDto } from "src/dto/create-account-dto";
 import { Account } from "src/account/interface/account.interface";
 import { AccountService } from "src/account/account.service";
 import { CreateUserDto } from "../dto/create-user.dto";
+import { pipe, switchMap } from "rxjs";
 
 @Injectable()
 export class UserService{
@@ -22,7 +23,6 @@ export class UserService{
     async findOne(id: String): Promise<User> {
         return this.userModel.findOne({ _id: id });
     }
-
     async findByEmail(email: String, user: User): Promise<User> {
         
     
@@ -31,6 +31,9 @@ export class UserService{
 
 
     async create(user: CreateUserDto, account: Account): Promise <User>{
+        // return this.authService.hashPassword(user.password).then(
+        //     switchMap(passwordHash: string) => 
+        // )
         account.name = this.userModel.name;
         
         const newAccount = this.accountService.create(account);

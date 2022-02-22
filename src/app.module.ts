@@ -7,7 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import config from './config/keys';
 
 @Module({
-  imports: [UserModule, MongooseModule.forRoot(config.mongoURI), AuthModule],
+  imports: [UserModule, MongooseModule.forRoot(config.mongoURI)],
   controllers: [AppController],
   providers: [AppService],
 })

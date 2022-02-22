@@ -7,6 +7,7 @@ export const UserSchema = new mongoose.Schema({
     lastname: String,
     phonenumber: String,
     email: String,
+    password: String,
     account_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Account' }
 
 },
