@@ -5,5 +5,5 @@ export const AccountSchema = new mongoose.Schema({
     number: String,
     type: String,
     balance: Number,
-    user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+    // user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 }, {timestamps: { createdAt: 'created_at', updatedAt: 'updated_at'}})

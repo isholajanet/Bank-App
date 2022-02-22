@@ -7,13 +7,13 @@ export class AuthService {
     constructor(private userService: UserService){}
 
 
-    // async validateUser(email: string, password: string): Promise <User>{
-    //     const user = await this.userService.findOne(email);
-    //     if(user.password === password){
-    //         const { password, ...result} = user;
-    //         return result;
-    //     }
+    async validateUser(email: string, password: string): Promise <any>{
+        const user = await this.userService.findOne(email);
+        if(user.password === password){
+            const { password, ...result} = user;
+            return result;
+        }
 
-    //     return null;
-    // }
+        return null;
+    }
 }
